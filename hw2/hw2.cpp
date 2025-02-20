@@ -101,7 +101,7 @@ void gameMenu() {
 
 
 int generateRandomQuestion(int difficulty) {
-
+    // maybe take a random number from 0 -> 9 and mult by difficulty for the numbers?
     int seed = 37;
     
 }
