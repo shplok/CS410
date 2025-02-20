@@ -1,0 +1,122 @@
+Script started on 2025-02-13 13:43:11-05:00 [TERM="xterm-256color" TTY="/dev/pts/54" COLUMNS="120" LINES="30"]
+soyr@pe15:~/cs410/hw1$ ls -l
+total 24
+-rwxr-xr-x 1 soyr cs410-2G 18272 Feb 13 13:42 hw1
+-rw-r--r-- 1 soyr cs410-2G  3848 Feb 13 13:43 hw1.cpp
+-rw-r--r-- 1 soyr cs410-2G     0 Feb 13 13:43 typescript
+soyr@pe15:~/cs410/hw1$ cat hw1.cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // instantiating Variables, to default/ unimportant values.
+    const auto EFFICENCY = 0.85;
+
+    string component1 = "";
+    string component2 = "";
+    string component3 = "";
+
+    double power1 = 0;
+    double power2 = 0;
+    double power3 = 0;
+
+    double totalEnergyRequired = 0;
+
+    
+    // handle user input using std::cin and std::cout
+    cout << "Welcome to Stewie’s Time Machine Calculator!\n\n";
+
+    cout << "Please enter the name of the first component: ";
+    getline(cin, component1);
+    cout << "Please Enter Power Requirement for Time Machine Component 1 (Watts): ";
+    cin >> power1;
+    cin.ignore(); // to make sure that each line is read correctly and not using next line as input.
+
+    cout << "Please enter the name of the second component: ";
+    getline(cin, component2);
+    cout << "Please Enter Power Requirement for Time Machine Component 2 in (Watts): ";
+    cin >> power2;
+    cin.ignore(); // to make sure that each line is read correctly and not using next line as input.
+ 
+    cout << "Please enter the name of the third component: ";
+    getline(cin, component3);
+    cout << "Please Enter Power Requirement for Time Machine Component 3 in (Watts): ";
+    cin >> power3;
+    cin.ignore(); // to make sure that each line is read correctly and not using next line as input.
+
+    // calculate the total energy required for running the time machine
+    totalEnergyRequired = (power1 + power2 + power3) * EFFICENCY;
+
+
+    // print the components in proper format to standard output
+    cout << "Component List: \n";
+    cout << "1. " << component1 << " - " << power1 << "\n";
+    cout << "2. " << component2 << " - " << power2 << "\n";
+    cout << "3. " << component3 << " - " << power3 << "\n";
+
+    cout << "Total Energy Required: " << totalEnergyRequired << " Watts\n";
+
+    // Print some creative and fun output!
+    // Stewie ascii from https://emojicombos.com/family-guy-stewie-ascii-art
+    cout << R"(
+⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⠶⠄⠠⠒⠒⠂⡠⠴⠤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⠤⠎⠁⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢆⠀⠀⠀⠀
+⡜⠙⠀⠀⠀⠀⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠓⡆⠀⠀
+⠀⢢⠀⠀⠀⡄⠒⠚⠳⠢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⣄⠀
+⠀⠈⠆⠀⡜⠬⢅⡂⠠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠠⣤⠄⡀⠒⠂⠀⠀⠀⠠⠼⡀
+⠀⠀⠈⢢⠱⡀⠀⠀⡩⠃⠀⠀⡠⠀⠀⠀⠀⠠⢌⣀⡀⠀⠑⡀⠀⠀⠀⠀⠠⢇
+⠀⠀⠀⠀⠑⢬⡉⠉⠀⠀⠀⠀⠑⠀⠀⠀⠀⠏⠀⠒⠢⠤⠬⠁⠀⠀⠀⡠⠌⠜
+⠀⠀⠀⠀⠀⠀⠈⠒⠤⣀⠀⠑⠖⠒⠒⠀⠀⠈⠢⠤⠤⠄⠂⢀⡠⠔⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠉⡐⣲⡤⢤⢀⣀⣀⠤⢤⠄⠒⠈⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠈⡏⠋⣳⠈⠊⠐⠁⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡳⠤⣓⠄⣛⣙⡤⢤⡤⠤⠐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠈⠈⠐⠊⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⢄⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣃⡀⠀⠀⢈⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠉⡔⠈⠁⠐⠢⠤⠤⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠘⠢⠤⠄⣀⣀⠠⠄⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀)" << "\n" 
+    << "Okay Brian, That's it! I'm travelling forward in time just so I can put you down myself.\n";
+
+    return 0;
+}soyr@pe15:~/cs410/hw1$ cat hw1.cpp[6Pls -l./hw1ls -l./hw1 hw1[1Pclear[3Pls g++ -o hw1 hw1.cpp
+soyr@pe15:~/cs410/hw1$ ./hw1
+Welcome to Stewie’s Time Machine Calculator!
+
+Please enter the name of the first component: Fluc   x Capacitor
+Please Enter Power Requirement for Time Machine Component 1 (Watts): 120/5  .5
+Please enter the name of the second component: C U U Quantum Computer
+Please Enter Power Requirement for Time Machine Component 2 in (Watts): 1 230.7
+Please enter the name of the third component:  Chrono Stabilizer
+Please Enter Power Requirement for Time Machine Component 3 in (Watts): 92 5.2
+Component List: 
+1. Flux Capacitor - 120.5
+2. Quantum Computer - 230.7
+3.  Chrono Stabilizer - 95.2
+Total Energy Required: 379.44 Watts
+
+⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⠶⠄⠠⠒⠒⠂⡠⠴⠤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⠤⠎⠁⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢆⠀⠀⠀⠀
+⡜⠙⠀⠀⠀⠀⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠓⡆⠀⠀
+⠀⢢⠀⠀⠀⡄⠒⠚⠳⠢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⣄⠀
+⠀⠈⠆⠀⡜⠬⢅⡂⠠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠠⣤⠄⡀⠒⠂⠀⠀⠀⠠⠼⡀
+⠀⠀⠈⢢⠱⡀⠀⠀⡩⠃⠀⠀⡠⠀⠀⠀⠀⠠⢌⣀⡀⠀⠑⡀⠀⠀⠀⠀⠠⢇
+⠀⠀⠀⠀⠑⢬⡉⠉⠀⠀⠀⠀⠑⠀⠀⠀⠀⠏⠀⠒⠢⠤⠬⠁⠀⠀⠀⡠⠌⠜
+⠀⠀⠀⠀⠀⠀⠈⠒⠤⣀⠀⠑⠖⠒⠒⠀⠀⠈⠢⠤⠤⠄⠂⢀⡠⠔⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠉⡐⣲⡤⢤⢀⣀⣀⠤⢤⠄⠒⠈⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠈⡏⠋⣳⠈⠊⠐⠁⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡳⠤⣓⠄⣛⣙⡤⢤⡤⠤⠐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠈⠈⠐⠊⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⢄⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣃⡀⠀⠀⢈⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠉⡔⠈⠁⠐⠢⠤⠤⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠘⠢⠤⠄⣀⣀⠠⠄⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+Okay Brian, That's it! I'm travelling forward in time just so I can put you down myself.
+soyr@pe15:~/cs410/hw1$ exit
+exit
+
+Script done on 2025-02-13 13:44:12-05:00 [COMMAND_EXIT_CODE="0"]
