@@ -13,8 +13,13 @@ void askQuestion(int difficulty, int& score) {
         if(cin.fail()) {
             throw runtime_error("Invalid input - must be a number!");
         }
-        // Use ternary operator for feedback as required:
-        cout << (answer == correctAnswer ? "Correct!" : "Wrong! " + insultPlayer());
+        
+        bool isCorrect = (answer == currentCorrectAnswer);
+        cout << (isCorrect ? "Correct!" : "Wrong! " + insultPlayer()) << endl;
+
+        if (isCorrect) {
+            score++;
+        }
     }
     catch(const runtime_error& e) {
         cout << e.what() << endl;
@@ -32,36 +37,42 @@ void askQuestion(string topic, int difficulty, int& score) {
 
 void startQuiz(std::string playerName, int difficulty = 1) {
     
-    int completed = 0;
+    int totalQuestions = 3;
     int score;
     string topic = "foo";
+    int completed = 0;
+
+    cout << "Stewie: Alright, " << playerName << ", let's see how smart you really are!" << endl;
 
     do {
-        askQuestion(topic, difficulty, &score);
+        askQuestion(difficulty, score);
         completed += 1;
     } while (completed < 3); 
+
+    cout << "You got " << score << "/" << totalQuestions << " correct!" << endl;
+    cout << "Stewie: " << (isPassing(score) ? "Fine, you win this round..." : "Ha! As expected!") << endl;
 }
 
 
-inline void insultPlayer() {
-
-    string insultLst[6] = {
-        "I hope you're joking..", 
+inline string insultPlayer() {  // Changed return type to string
+    const int NUM_INSULTS = 6;
+    string insults[NUM_INSULTS] = {
+        "I hope you're joking...", 
         "You buffoon!",
         "This is the second worst thing I've seen today...",
-        "You've convinced me you have the brain of a 10 year old, though Herbert might take more convincing",
-        "booo, booo! I'm booing you",
-        "Insult"};
-        int randomSelection = rand() % insultLst->size();
-    cout << insultLst[randomSelection] << "\n";
+        "You've convinced me you have the brain of a 10 year old...",
+        "Booo, booo! I'm booing you!",
+        "Oh, how predictably mediocre!"
+    };
+    
+    return insults[rand() % NUM_INSULTS]; 
 }
-
 
 template <typename T>
 
 
 bool isPassing(T correctAnswers) {
-    return true if correctAnswers >= 2 else false;
+    return correctAnswers >= 2;
 }
 
 
@@ -112,17 +123,31 @@ void gameMenu() {
     }
 }
 
+int currentCorrectAnswer = 0;
 
 int generateRandomQuestion(int difficulty) {
     // maybe take a random number from 0 -> 9 and mult by difficulty for the numbers?
-    int seed = 37;
     
-    srand(seed);
-    
+    difficulty = 1;
+
+    int num1 = (rand() % 10) * difficulty;
+    int num2 = (rand() % 10) * difficulty;
+
+    int operation = 0; // 0 addition, 
+
+    string question;
+
+    if (operation == 0) {
+        question = to_string(num1) + " + " + to_string(num2) + " = ?";
+    }
+
+    currentCorrectAnswer = num1 + num2;
+    return question;
 }
 
 
 int main() {
+    srand(37); // set the random seed
     int score;
     gameMenu();
 
