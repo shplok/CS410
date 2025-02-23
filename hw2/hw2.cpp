@@ -6,8 +6,21 @@ using namespace std;
 
 
 void askQuestion(int difficulty, int& score) {
-
-    cout << "ask question";
+    try {
+        int answer;
+        cout << generateRandomQuestion(difficulty) << endl;
+        cin >> answer;
+        if(cin.fail()) {
+            throw runtime_error("Invalid input - must be a number!");
+        }
+        // Use ternary operator for feedback as required:
+        cout << (answer == correctAnswer ? "Correct!" : "Wrong! " + insultPlayer());
+    }
+    catch(const runtime_error& e) {
+        cout << e.what() << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }
 
 
@@ -103,6 +116,8 @@ void gameMenu() {
 int generateRandomQuestion(int difficulty) {
     // maybe take a random number from 0 -> 9 and mult by difficulty for the numbers?
     int seed = 37;
+    
+    srand(seed);
     
 }
 
