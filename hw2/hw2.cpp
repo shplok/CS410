@@ -13,6 +13,7 @@ bool isPassing(T correctAnswers);
 // global variables to store generated numbers for questions
 int generatedNum1 = 0;
 int generatedNum2 = 0;
+int totalQuestions = 0;
 
 // function to ask a math question based on difficulty level and update the score
 void askQuestion(int difficulty, int& score) {
@@ -130,22 +131,24 @@ void askQuestion(string topic, int difficulty, int& score) {
 // function to start the quiz with player name and difficulty setting
 void startQuiz(string playerName, int difficulty) {
     // initialize quiz variables
-    int totalQuestions = 3;
+    int targetCorrectAnswers = 3;
     int score = 0;
-    int completed = 0;
+
+    totalQuestions = 0;
 
     // stewie's greeting message
     cout << "Stewie: Alright, " << playerName << ", let's see how smart you really are!" << endl;
 
-    // loop to ask all questions
+    // loop to ask questions until 3 correct answers
     do {
         askQuestion(difficulty, score);
-        completed += 1;
-    } while (completed < totalQuestions); 
+        totalQuestions += 1;
+    } while (score < targetCorrectAnswers);
 
     // display final score
     cout << "You got " << score << "/" << totalQuestions << " correct!" << endl;
-    // final message based on pass/fail status
+    
+    // final message based on pass/fail status using the isPassing template function
     cout << "Stewie: " << (isPassing(score) ? "Fine, you win this round..." : "Ha! As expected!") << endl;
 }
 
@@ -169,7 +172,7 @@ inline void insultPlayer() {
 template <typename T>
 bool isPassing(T correctAnswers) {
     // pass threshold is 2 correct answers
-    return correctAnswers >= 2;
+    return ((double)correctAnswers / totalQuestions >= 0.5);
 }
 
 // function to generate random numbers for questions based on difficulty

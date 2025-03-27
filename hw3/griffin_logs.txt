@@ -1,0 +1,9 @@
+Peter,42,M,8.5,70,false,1 9 3 2 4
+Lois,40,F,7.8,150,false,5 5 5 5 5
+Meg,18,F,6.1,120,true,0 0 0 0 0
+Chris,16,M,6.8,85,false,2 3 1 4 0
+Stewie,1,M,9.5,185,false,9 8 7 6 5
+Brian,7,M,9.2,160,true,4 2 6 3 1
+Quagmire,61,M,7.5,110,false,6 9 6 9 6
+Joe,52,M,6.9,130,true,5 0 5 0 5
+Cleveland,47,M,5.8,105,false,3 3 3 3 3

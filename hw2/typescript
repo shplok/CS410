@@ -1,17 +1,9 @@
-Script started on 2025-03-02 18:49:07-05:00 [TERM="xterm" TTY="/dev/pts/25" COLUMNS="100" LINES="35"]
-soyr@pe15:~/cs410/hw2$ ls-l
-ls-l: command not found
-soyr@pe15:~/cs410/hw2$ l[Kls -l
-total 40
--rwxr-xr-x 1 soyr cs410-2G 31832 Mar  2 18:49 hw2
--rw-r--r-- 1 soyr cs410-2G  8056 Mar  2 18:48 hw2.cpp
--rw-r--r-- 1 soyr cs410-2G     0 Mar  2 18:49 typescript
-soyr@pe15:~/cs410/hw2$ ls -l[1P-lfor i in {0..6}; do   echo "Hexdump comparison for part$i:";   echo "Your implementation:";   hexdump -C my_output/test.txt.part$i | head;   echo "Reference implementation:";   hexdump -C test.txt.part$i | head; done[A[A[C[C[C[C[C[C[C[C[C[C[C[CComparing part$i:";   diff my_output/test.txt.part$i test.txt.part$i; done[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A./raidjhd -f test.txt[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Prm -f *.part?cp test.txt.part* my_output/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Prm -f *.part?./raidjhd -f test.txtfor i in {0..6}; do   echo "Comparing part$i:";   diff my_output/test.txt.part$i test.txt.part$i; done[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CHexdump comparison for part$i:";   echo "Your implementation:";   hexdump -C my_output/test.txt.part$i | head;   echo "Reference implementation:";   hexdump -C test.txt.part$i | head; done[A[Als-l[K
-[K
-[K[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C -l[Kg++ hw2/c[K[K,.c[K[K[K.cpp -o hw2
-soyr@pe15:~/cs410/hw2$ cat h2[Kw2.cpp
+Script started on 2025-03-04 16:13:51-05:00 [TERM="xterm" TTY="/dev/pts/8" COLUMNS="100" LINES="35"]
+soyr@pe15:~/cs410/hw2$ ls -l
+total 8
+-rw-r--r-- 1 soyr cs410-2G 8189 Mar  4 16:13 hw2.cpp
+-rw-r--r-- 1 soyr cs410-2G    0 Mar  4 16:13 typescript
+soyr@pe15:~/cs410/hw2$ cat hw2.cpp 
 #include <iostream>
 #include <random>
 #include <string>
@@ -27,6 +19,7 @@ bool isPassing(T correctAnswers);
 // global variables to store generated numbers for questions
 int generatedNum1 = 0;
 int generatedNum2 = 0;
+int totalQuestions = 0;
 
 // function to ask a math question based on difficulty level and update the score
 void askQuestion(int difficulty, int& score) {
@@ -144,22 +137,24 @@ void askQuestion(string topic, int difficulty, int& score) {
 // function to start the quiz with player name and difficulty setting
 void startQuiz(string playerName, int difficulty) {
     // initialize quiz variables
-    int totalQuestions = 3;
+    int targetCorrectAnswers = 3;
     int score = 0;
-    int completed = 0;
+
+    totalQuestions = 0;
 
     // stewie's greeting message
     cout << "Stewie: Alright, " << playerName << ", let's see how smart you really are!" << endl;
 
-    // loop to ask all questions
+    // loop to ask questions until 3 correct answers
     do {
         askQuestion(difficulty, score);
-        completed += 1;
-    } while (completed < totalQuestions); 
+        totalQuestions += 1;
+    } while (score < targetCorrectAnswers);
 
     // display final score
     cout << "You got " << score << "/" << totalQuestions << " correct!" << endl;
-    // final message based on pass/fail status
+    
+    // final message based on pass/fail status using the isPassing template function
     cout << "Stewie: " << (isPassing(score) ? "Fine, you win this round..." : "Ha! As expected!") << endl;
 }
 
@@ -183,7 +178,7 @@ inline void insultPlayer() {
 template <typename T>
 bool isPassing(T correctAnswers) {
     // pass threshold is 2 correct answers
-    return correctAnswers >= 2;
+    return ((double)correctAnswers / totalQuestions >= 0.5);
 }
 
 // function to generate random numbers for questions based on difficulty
@@ -264,7 +259,8 @@ int main() {
     
     // end program with success code
     return 0;
-}soyr@pe15:~/cs410/hw2$ cat hw2.cppg++ hw2.cpp -o hw2
+}soyr@pe15:~/cs410/hw2$ 
+soyr@pe15:~/cs410/hw2$ cat hw2.cpp [7Pls -l[1Pexit./hw2g++ -o hw2 hw2.cpp
 soyr@pe15:~/cs410/hw2$ ./hw2
 Choose a Character!: 
 1. Peter
@@ -275,13 +271,19 @@ Choose a Character!:
 6. Exit
 > 1
 Stewie: Alright, Peter, let's see how smart you really are!
-What is 9 + 0 > 9
-Correct!
-What is 5 + 1 > 6
-Correct!
-What is 2 + 4 > 124142
+What is 9 + 0 > 101001
+Wrong! You've convinced me you have the brain of a 10 year old...
+What is 1 + 2 > 1000
 Wrong! Moron!
-You got 2/3 correct!
+What is 3 + 0 > 1000
+Wrong! I hope you're joking...
+What is 2 + 0 > 2
+Correct!
+What is 9 + 1 > 10
+Correct!
+What is 4 + 2 > 6
+Correct!
+You got 3/6 correct!
 Stewie: Fine, you win this round...
 Choose a Character!: 
 1. Peter
@@ -290,15 +292,25 @@ Choose a Character!:
 4. Chris
 5. Brian
 6. Exit
-> 5
-Stewie: Alright, Brian, let's see how smart you really are!
-What is 15 + 19 > 1
-Wrong! This is the second worst thing I've seen today...
-What is 40 + 19 > 1
+> 2
+Stewie: Alright, Lois, let's see how smart you really are!
+What is 10 + 8 > 0
+Wrong! Moron!
+What is 2 + 4 > 0
+Wrong! You buffoon!
+What is 7 + 9 > 0
+Wrong! Moron!
+What is 13 + 1 > 0
 Wrong! You've convinced me you have the brain of a 10 year old...
-What is 14 + 2 > 1
+What is 6 + 2 > 0
 Wrong! I hope you're joking...
-You got 0/3 correct!
+What is 9 + 3 > 12
+Correct!
+What is 3 + 4 > 7
+Correct!
+What is 15 + 5 > 20
+Correct!
+You got 3/8 correct!
 Stewie: Ha! As expected!
 Choose a Character!: 
 1. Peter
@@ -307,8 +319,8 @@ Choose a Character!:
 4. Chris
 5. Brian
 6. Exit
-> 6
+> ex  6
 soyr@pe15:~/cs410/hw2$ exit
 exit
 
-Script done on 2025-03-02 18:49:53-05:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2025-03-04 16:14:54-05:00 [COMMAND_EXIT_CODE="0"]

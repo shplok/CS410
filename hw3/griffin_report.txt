@@ -1,0 +1,59 @@
+=== GRIFFIN FAMILY MATRIX RECOVERY REPORT ===
+=============================================
+
+Name: Stewie
+Age: 1
+Intelligence: 185
+Loyalty Score: 119
+Status: ORIGINAL
+------------------------------
+Name: Brian
+Age: 7
+Intelligence: 100
+Loyalty Score: 27
+Status: RECOVERED
+------------------------------
+Name: Lois
+Age: 40
+Intelligence: 150
+Loyalty Score: 55
+Status: ORIGINAL
+------------------------------
+Name: Joe
+Age: 52
+Intelligence: 100
+Loyalty Score: 5
+Status: RECOVERED
+------------------------------
+Name: Meg
+Age: 18
+Intelligence: 100
+Loyalty Score: 0
+Status: RECOVERED
+------------------------------
+Name: Quagmire
+Age: 61
+Intelligence: 110
+Loyalty Score: 114
+Status: ORIGINAL
+------------------------------
+Name: Cleveland
+Age: 47
+Intelligence: 105
+Loyalty Score: 21
+Status: ORIGINAL
+------------------------------
+Name: Chris
+Age: 16
+Intelligence: 85
+Loyalty Score: 10
+Status: ORIGINAL
+------------------------------
+Name: Peter
+Age: 42
+Intelligence: 70
+Loyalty Score: 19
+Status: ORIGINAL
+------------------------------
+
+Average Sarcasm Level: 7.65
